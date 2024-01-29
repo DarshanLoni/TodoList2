@@ -1,0 +1,22 @@
+Sure, let's break down the components:
+
+1. **Todoform.js:**
+   - This component is a functional component that uses the `useState` hook to manage the state of the input value.
+   - It has a form with an input field and a button. The input value is controlled by the state variable `value`, and it updates on every change in the input field.
+   - When the form is submitted, it prevents the default behavior, calls the `addTodo` function (passed as a prop), and then resets the input value to an empty string.
+
+2. **TodoWrapper.js:**
+   - This component is also a functional component that uses the `useState` hook to manage the state of the todos.
+   - It contains a heading, the `Todoform` component, and a mapping of the todos to `Todo` components.
+   - The `addTodo` function is passed as a prop to `Todoform`, and it adds a new todo to the `todos` state using the spread operator.
+
+3. **Todo.js:**
+   - This component is a functional component that receives a `task` prop.
+   - It displays the task's text in a paragraph element and has a div with two FontAwesome icons: one for editing (`faPenToSquare`) and one for deleting (`faTrash`).
+
+**Explanation of Hooks:**
+   - `useState`: This hook is used to declare state variables in functional components. It takes an initial state as an argument and returns an array with two elements - the current state and a function to update the state.
+   - In `Todoform.js`, `const [value, setValue] = useState("")` initializes a state variable `value` with an initial value of an empty string, and `setValue` is the function to update this state.
+   - In `TodoWrapper.js`, `const [todos, setTodos] = useState([])` initializes a state variable `todos` with an initial value of an empty array, and `setTodos` is the function to update this state.
+
+Hooks allow functional components to manage state and side effects, making it possible to use state in functional components instead of class components. The `useState` hook, in particular, enables the management of state variables and re-renders components when their state changes.
