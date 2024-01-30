@@ -6,7 +6,8 @@ export const TodoWrapper = () => {
     const [todos,setTodos]=useState([])
 
     const addTodo=(todo)=>{
-        setTodos([...todos,{id: uuidv4(),task:todo,completed:false,isEditing:false}])
+        setTodos([...todos,{id: uuidv4(),task:todo,completed:false,isEditing:false}]) //  ...todos used because to not overwrite previous tasks
+     //,setTodos([...todos,{task:todo}])   FINE
         console.log(todos)
     }
   return (

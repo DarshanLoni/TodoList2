@@ -20,3 +20,51 @@ Sure, let's break down the components:
    - In `TodoWrapper.js`, `const [todos, setTodos] = useState([])` initializes a state variable `todos` with an initial value of an empty array, and `setTodos` is the function to update this state.
 
 Hooks allow functional components to manage state and side effects, making it possible to use state in functional components instead of class components. The `useState` hook, in particular, enables the management of state variables and re-renders components when their state changes.
+
+
+
+In Todoform.js, the preventDefault method is called on the e (event) object in the handleSubmit function. This method prevents the default behavior of the form, which is to reload the page when the form is submitted. By calling e.preventDefault(), you stop this default behavior, allowing you to handle the form submission in a custom way using the addTodo function.
+
+After preventing the default behavior, the addTodo function is called with the value as an argument. This function is passed to Todoform as a prop from the parent component (TodoWrapper). Here's a brief explanation of what addTodo does:
+
+
+
+
+
+
+setTodos([...todos, { id: uuidv4(), task: todo, completed: false, isEditing: false }]): This line updates the todos state by adding a new todo object to the existing array. The new todo object has properties like id, task, completed, and isEditing. The uuidv4() function generates a unique identifier for the new todo.
+
+setValue(""): After adding a new todo, this line sets the value state (the input field) to an empty string, effectively clearing the input field.
+
+console.log(todos): This logs the updated todos array to the console. However, note that due to the asynchronous nature of state updates in React, the console.log(todos) line might log the previous state. If you need the updated state immediately after the state update, you should use the state updater function provided by setTodos.
+
+Overall, after submitting the form, addTodo adds a new todo to the todos state, clears the input field, and logs the updated todos array to the console.
+
+
+
+
+User
+in todowrapper: explain lines after h1
+
+ChatGPT
+Certainly! Let's break down the lines after the <h1> element in TodoWrapper.js:
+
+jsx
+Copy code
+<div className='TodoWrapper'>
+    <h1>Get Things done!</h1>
+    <Todoform addTodo={addTodo}/>
+    {todos.map((todo, index) => (
+        <Todo task={todo} key={index}/>
+    ))}
+</div>
+Explanation:
+
+<Todoform addTodo={addTodo}/>: This line renders the Todoform component and passes the addTodo function as a prop. This allows the Todoform component to call addTodo when the form is submitted.
+
+{todos.map((todo, index) => (<Todo task={todo} key={index}/>))}: This line maps over the todos array using the map function and renders a Todo component for each todo in the array. The task prop is passed to each Todo component, which contains the details of the specific todo.
+
+todos.map((todo, index) => (<Todo task={todo} key={index}/>)): This maps over the todos array.
+(<Todo task={todo} key={index}/>): For each todo, it renders a Todo component, passing the task prop with the details of the todo and a key prop with a unique identifier (index in this case). The key prop is necessary for React to efficiently update and re-render the components when the array changes.
+So, the lines after <h1> in TodoWrapper.js render the Todoform component for adding new todos and map over the existing todos array to render a Todo component for each existing todo. This results in a list of todos being displayed below the heading "Get Things done!" in the TodoWrapper component
+
